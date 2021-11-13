@@ -1,4 +1,4 @@
-# Exclusive Watch Server Site
+# Exclusive Watch Server Side
 
 - CRUD Used ----------
 - app.post
