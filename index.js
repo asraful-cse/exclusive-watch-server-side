@@ -14,7 +14,7 @@ const port = 5000;
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
 	res.send("Hello World!");
@@ -37,6 +37,14 @@ client.connect((err) => {
 	app.get("/allServices", async (req, res) => {
 		const result = await servicesCollection.find({}).toArray();
 		res.send(result);
+	});
+	// delete all services----------------------------------------------------
+	app.delete("/allServices/:id", async (req, res) => {
+		const id = req.params.id;
+		const query = { _id: ObjectId(id) };
+		const result = await servicesCollection.deleteOne(query);
+		console.log("deleting user with id ", result);
+		res.json(result);
 	});
 
 	// single service------------------------------------------------------
@@ -99,14 +107,6 @@ client.connect((err) => {
 			console.log(documents);
 			res.send(documents);
 		}
-		// else {
-		//   const role = "admin";
-		//   const result3 = await usersCollection.insertOne(req.body.email, {
-		//     role: role,
-		//   });
-		// }
-
-		// console.log(result);
 	});
 
 	// check admin or not-------------------------------------------------------------------
@@ -120,7 +120,6 @@ client.connect((err) => {
 
 	/// all order---------------------------------------------------------------------------
 	app.get("/allOrders", async (req, res) => {
-		// console.log("hello");
 		const result = await ordersCollection.find({}).toArray();
 		res.send(result);
 	});
