@@ -1,7 +1,9 @@
 # Exclusive Watch Server Site
 
-- CRUD Use Shortcut ----------
+- CRUD Used ----------
 - app.post
 - app.get
 - app.put
 - app.delete
+
+- Live Server Side Link: [https://boiling-bastion-71072.herokuapp.com/]

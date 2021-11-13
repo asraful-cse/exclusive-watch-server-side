@@ -18,7 +18,9 @@ app.use(express.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-	res.send("Hello World!");
+	res.send(
+		"EXCLUSIVE WATCH PROJECT SUCCESSFULLY  CONNECTED TO DATABASE MONGODB"
+	);
 });
 
 client.connect((err) => {
