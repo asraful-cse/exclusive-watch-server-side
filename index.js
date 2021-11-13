@@ -1,5 +1,5 @@
 const express = require("express");
-const bodyParser = require("body-parser");
+// const bodyParser = require("body-parser");
 const cors = require("cors");
 require("dotenv").config();
 const MongoClient = require("mongodb").MongoClient;
@@ -10,8 +10,9 @@ const client = new MongoClient(uri, {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 });
-const port = 5000;
+const port = process.env.PORT || 5000;
 const app = express();
+// middleware------------------------
 app.use(cors());
 app.use(express.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
@@ -83,12 +84,17 @@ client.connect((err) => {
 		res.json(result);
 	});
 
-	// review------------------------------------------------------------------review get korte hobe
-	app.post("/addSReview", async (req, res) => {
+	// review post-----------------------------------------------------------------
+	app.post("/addReview", async (req, res) => {
 		const result = await reviewCollection.insertOne(req.body);
 		res.send(result);
 	});
-
+	// review get------------------------------------------------------------------
+	app.get("/addReview", async (req, res) => {
+		const result = await reviewCollection.find({}).toArray();
+		res.send(result);
+	});
+	// post user info---------------------------------------------------------------
 	app.post("/addUserInfo", async (req, res) => {
 		console.log("req.body");
 		const result = await usersCollection.insertOne(req.body);
