@@ -1,6 +1,6 @@
 # Exclusive Watch Server Side
 
-- CRUD Used ----------
+- CRUD Operation Used ----------
 - app.post
 - app.get
 - app.put
